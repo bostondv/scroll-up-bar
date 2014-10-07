@@ -1,3 +1,9 @@
+# 0.3.1
+
+## Bug Fixes
+
+* Show the bar on iOS when clicking the clock to scroll back to top
+
 # 0.3.0
 
 ## BUg Fixes

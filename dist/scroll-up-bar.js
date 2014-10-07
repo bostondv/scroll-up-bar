@@ -1,4 +1,4 @@
-/* scroll-up-bar v0.3.0 (https://github.com/eduardomb/scroll-up-bar) */
+/* scroll-up-bar v0.3.1 (https://github.com/eduardomb/scroll-up-bar) */
 (function($) {
   'use strict';
 
@@ -126,6 +126,12 @@
         lastY = y;
       });
     } else { // Fallback simplified behaviour for iOS.
+      $window.on('scroll', function() {
+        if ($window.scrollTop() === 0) {
+          $window.trigger('touchend.scrollupbar');
+        }
+      });
+
       $window.on('touchstart.scrollupbar', function () {
         lastY = $window.scrollTop();
       });
