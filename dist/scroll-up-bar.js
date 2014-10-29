@@ -1,4 +1,5 @@
 /* scroll-up-bar v0.3.1 (https://github.com/eduardomb/scroll-up-bar) */
+/* scroll-up-bar v0.3.2 (https://github.com/bostondv/scroll-up-bar) */
 (function($) {
   'use strict';
 
@@ -25,7 +26,6 @@
         $document = $(document),
         minY = $bar.css('position') == 'fixed' ? 0 : $bar.offset().top,
         lastY = $window.scrollTop(), // Use last Y to detect scroll direction.
-        initialPosTop = $bar.position().top,
         iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent),
         timeout;
 
@@ -67,7 +67,7 @@
             } else {
               $bar.css({
                 'position': 'absolute',
-                'top': initialPosTop
+                'top': 0
               });
             }
 
@@ -97,7 +97,7 @@
           if ($.scrollupbar.isFullyInViewport) {
             $bar.css({
               'position': 'absolute',
-              'top': lastY > minY ? lastY : initialPosTop
+              'top': lastY > minY ? lastY : 0
             });
 
             if (!isFullyInViewport()) {
@@ -144,10 +144,10 @@
             // Restore original position.
             $bar.css({
               'position': 'absolute',
-              'top': initialPosTop
+              'top': 0
             });
 
-            $bar.show(function() {
+            $bar.slideDown(function() {
               $.scrollupbar.isInViewport = true;
               $.scrollupbar.isFullyInViewport = true;
               options.enterViewport();
@@ -188,7 +188,7 @@
       // Restore original bar position.
       $bar.css({
         'position': 'absolute',
-        'top': initialPosTop
+        'top': 0
       });
     };
 
